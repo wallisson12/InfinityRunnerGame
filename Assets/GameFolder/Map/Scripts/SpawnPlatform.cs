@@ -22,7 +22,7 @@ public class SpawnPlatform : MonoBehaviour
     {
         for(int i=0;i<platforms.Count;i++)
         {
-            GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(i * 30f, 0f), transform.rotation);
+            GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(i * 30f, -4.5f), transform.rotation);
 
             //Platforms in scene
             currentPlatforms.Add(p.transform);
@@ -66,7 +66,7 @@ public class SpawnPlatform : MonoBehaviour
     //This method do the pooling of the platforms
     void Pooling(GameObject p)
     {
-        p.transform.position = new Vector2(offset,0f);
+        p.transform.position = new Vector2(offset,-4.5f);
         offset += 30f;
         
     }
