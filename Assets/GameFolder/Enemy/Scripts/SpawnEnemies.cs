@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private List<GameObject> enemiesList = new List<GameObject>();
+    
     void Start()
+    {
+        SpawnEnemy();
+    }
+
+    
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnEnemy()
     {
-        
+        Instantiate(enemiesList[Random.Range(0,enemiesList.Count)], transform.position, transform.rotation);
     }
 }
