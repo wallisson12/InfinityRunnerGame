@@ -20,15 +20,17 @@ public class SpawnPlatform : MonoBehaviour
 
     void Start()
     {
+        int place = 1;
+
         for(int i=0;i<platforms.Count;i++)
         {
-            GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(i * 30f, -7.40f), transform.rotation);
-
+            GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(place * 35f,0f), transform.rotation);
+            place++;
             //Platforms in scene
             currentPlatforms.Add(p.transform);
 
             //Free position of the next platform
-            offset += 30f;
+            offset += 35f;
         }
 
         //what platform I am
@@ -45,7 +47,7 @@ public class SpawnPlatform : MonoBehaviour
     {
         float distance = player.position.x - currentPlatformPoint.position.x;
 
-        if (distance >= 0.5f)
+        if (distance >= 10f)
         {
             //Pooling platform
             Pooling(currentPlatforms[platformIndex].gameObject);
@@ -58,6 +60,7 @@ public class SpawnPlatform : MonoBehaviour
                 platformIndex = 0;
             }
 
+            //New platform point
             currentPlatformPoint = currentPlatforms[platformIndex].GetComponent<Platform>().finalPoint;
 
         }
@@ -66,8 +69,12 @@ public class SpawnPlatform : MonoBehaviour
     //This method do the pooling of the platforms
     void Pooling(GameObject p)
     {
-        p.transform.position = new Vector2(offset,-7.40f);
-        offset += 30f;
-        
+        offset += 35f;
+        p.transform.position = new Vector2(offset,0f);
+
+        if (p.GetComponent<Platform>().spawnObj != null)
+        {
+            p.GetComponent<Platform>().spawnObj.Spawn();
+        }
     }
 }
