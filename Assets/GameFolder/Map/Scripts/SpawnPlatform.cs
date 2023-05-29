@@ -25,6 +25,12 @@ public class SpawnPlatform : MonoBehaviour
         for(int i=0;i<platforms.Count;i++)
         {
             GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(place * 22f,0f), transform.rotation);
+
+            if (p.CompareTag("p2"))
+            {
+                p.transform.position = new Vector2(p.transform.position.x,-0.7f);
+            }
+
             place++;
             //Platforms in scene
             currentPlatforms.Add(p.transform);
@@ -70,7 +76,15 @@ public class SpawnPlatform : MonoBehaviour
     void Pooling(GameObject p)
     {
         offset += 22f;
-        p.transform.position = new Vector2(offset,0f);
+
+        if (p.CompareTag("p2"))
+        {
+            p.transform.position = new Vector2(offset, -0.7f);
+        }
+        else
+        {
+            p.transform.position = new Vector2(offset,0f);
+        }
 
         if (p.GetComponent<Platform>().spawnObj != null)
         {
