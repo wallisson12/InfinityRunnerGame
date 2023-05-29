@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyEnemy : MonoBehaviour
+public class FlyEnemy : Enemy
 {
     private Rigidbody2D rig;
-    [SerializeField]
-    private float speed;
+    [SerializeField] private float speed;
     
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        health = 1;
     }
 
     void OnEnable()
@@ -30,11 +30,4 @@ public class FlyEnemy : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Dano");    
-        }    
-    }
 }

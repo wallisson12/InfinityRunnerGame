@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpawnPlatform : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> platforms = new List<GameObject>();
+    [SerializeField] private List<GameObject> platforms = new List<GameObject>();
     private float offset;
     private Transform player;
     private List<Transform> currentPlatforms = new List<Transform>();

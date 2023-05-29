@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     [Header("Animations Hash")]
     public int jump;
 
+    [Header("Bullet")]
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform pointGun;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +35,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Jump();
+        Shoot();
+    }
+
+    /// <summary>
+    /// Player shoot
+    /// </summary>
+    void Shoot()
+    {
+        if (Input.GetKeyDown(KeyCode.RightControl))
+        {
+            Instantiate(bulletPrefab, pointGun.position, Quaternion.identity);
+        }
     }
 
     /// <summary>

@@ -1,13 +1,17 @@
 using UnityEngine;
 
-public class BombEnemy : MonoBehaviour
+public class BombEnemy : Enemy
 {
+    private float throwCount; 
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private Transform firePoint;
 
     [SerializeField] private float throwTime;
-    private float throwCount; 
-    
+
+    void Start()
+    {
+        health = 2;
+    }
     void Update()
     {
         throwCount += Time.deltaTime;
@@ -19,11 +23,4 @@ public class BombEnemy : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //Damage Player
-        }
-    }
 }

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    private int bombEx;
     [SerializeField] private float xAxis, yAxis;
     [SerializeField] private Animator anim;
-    private int bombEx;
     [SerializeField] private Rigidbody2D rb;
 
     

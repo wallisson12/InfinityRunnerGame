@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    [SerializeField]
-    private List<GameObject> enemiesList = new List<GameObject>();
-    private float timeCount;
-    [SerializeField]
-    private float spawnTime;
     public GameObject g;
+    private float timeCount;
+    [SerializeField] private List<GameObject> enemiesList = new List<GameObject>();
+    [SerializeField] private float spawnTime;
     
     void Update()
     {
