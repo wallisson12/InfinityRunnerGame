@@ -1,39 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
     [SerializeField] private float xAxis, yAxis;
     [SerializeField] private Animator anim;
-    private int bomb;
-    private Rigidbody2D rb;
+    private int bombEx;
+    [SerializeField] private Rigidbody2D rb;
 
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bomb = Animator.StringToHash("Bomb");
+        bombEx = Animator.StringToHash("Bomb");
         rb.AddForce(new Vector2(xAxis,yAxis),ForceMode2D.Impulse);
-        Destroy(gameObject, 5f);
+        DestroyBomb(5f);
+    }
+
+    void DestroyBomb(float time)
+    {
+        Destroy(gameObject, time);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            //Pooling to the bomb
-            Debug.Log("Dano Player");
-            anim.Play(bomb);
-            Destroy(gameObject, 1f);
-            
+            //Damage player
+            anim.Play(bombEx);
+            DestroyBomb(0.5f);
 
-
-        }else if (other.gameObject.layer == 6)
+        }
+        else if (other.gameObject.layer == 6)
         {
-            Debug.Log("Chao");
-            anim.Play(bomb);
-            Destroy(gameObject, 1f);
+            anim.Play(bombEx);
+            DestroyBomb(0.5f);
         }
     }
 }

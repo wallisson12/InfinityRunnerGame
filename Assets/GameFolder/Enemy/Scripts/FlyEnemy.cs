@@ -11,12 +11,23 @@ public class FlyEnemy : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 8f);
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(DisableEnemy());  
     }
 
     void FixedUpdate()
     {
         rig.velocity = Vector2.left * speed;
+    }
+
+
+    IEnumerator DisableEnemy()
+    {
+        yield return new WaitForSeconds(10f);
+        gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)

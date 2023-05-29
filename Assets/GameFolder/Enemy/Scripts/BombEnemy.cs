@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BombEnemy : MonoBehaviour
@@ -16,8 +14,7 @@ public class BombEnemy : MonoBehaviour
 
         if (throwCount >= throwTime)
         {
-            //Add rotation to the bomb
-            Instantiate(bombPrefab,firePoint.position,Quaternion.identity);
+            Instantiate(bombPrefab, firePoint.position, Quaternion.identity);
             throwCount = 0f;
         }
     }
@@ -26,7 +23,7 @@ public class BombEnemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Dano");
+            //Damage Player
         }
     }
 }

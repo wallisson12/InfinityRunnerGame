@@ -9,6 +9,7 @@ public class SpawnEnemies : MonoBehaviour
     private float timeCount;
     [SerializeField]
     private float spawnTime;
+    public GameObject g;
     
     void Update()
     {
@@ -16,13 +17,23 @@ public class SpawnEnemies : MonoBehaviour
 
         if (timeCount >= spawnTime)
         {
-            SpawnEnemy();
-            timeCount = 0f;
+            SpawnEnemy();  
         }
     }
 
     void SpawnEnemy()
     {
-        Instantiate(enemiesList[Random.Range(0,enemiesList.Count)], transform.position + new Vector3(0f,Random.Range(0f,4f),0f), transform.rotation);
+        g = enemiesList[Random.Range(0, enemiesList.Count)];
+
+        if (g.activeSelf)
+        {
+            return;  
+        }
+        else
+        {
+            timeCount = 0f;
+            g.SetActive(true);
+            g.transform.position = new Vector2(transform.position.x,Random.Range(transform.position.y,8f));
+        }
     }
 }
