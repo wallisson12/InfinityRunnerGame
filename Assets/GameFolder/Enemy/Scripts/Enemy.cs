@@ -13,7 +13,14 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (gameObject.CompareTag("EnemyFly"))
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
