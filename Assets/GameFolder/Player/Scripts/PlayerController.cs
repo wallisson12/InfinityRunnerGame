@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private float speed,jumpForce;
     public bool isJumping;
 
+    //Player Health
+    public int health { get; private set; }
+
+
     [SerializeField]
     private Animator anim;
 
@@ -24,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         jump = Animator.StringToHash("Jumping");
+        health = 3;
     }
 
     void FixedUpdate()
@@ -60,6 +65,14 @@ public class PlayerController : MonoBehaviour
             isJumping = true;
             rb.AddForce(new Vector2(rb.velocity.x,jumpForce),ForceMode2D.Impulse);
         }
+    }
+    
+    /// <summary>
+    /// Player takes damage
+    /// </summary>
+    public void OnHit(int damage)
+    {
+        health -= damage;
     }
 
     void OnCollisionEnter2D(Collision2D other)

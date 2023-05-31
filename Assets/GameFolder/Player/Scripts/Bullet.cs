@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         efxBullet = Animator.StringToHash("BulletExplosion");
         Destroy(gameObject, 5f);
-        
     }
 
 

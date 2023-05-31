@@ -32,6 +32,11 @@ public class Enemy : MonoBehaviour
         {
             ApplyDamage(other.GetComponent<Bullet>().damage);
         }
+        //Damage Player
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().OnHit(damage);
+        }
         
     }
 }

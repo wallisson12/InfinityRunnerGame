@@ -74,6 +74,9 @@ public class SpawnPlatform : MonoBehaviour
     //This method do the pooling of the platforms
     void Pooling(GameObject p)
     {
+
+        //When to do the pooling spawn a random platform
+
         offset += 22f;
 
         if (p.CompareTag("p2"))

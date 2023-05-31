@@ -6,7 +6,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float xAxis, yAxis;
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody2D rb;
-
+    [SerializeField] private int damage;
     
     void Start()
     {
@@ -26,6 +26,7 @@ public class Bomb : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Damage player
+            other.GetComponent<PlayerController>().OnHit(damage);
             anim.Play(bombEx);
             DestroyBomb(0.5f);
 
