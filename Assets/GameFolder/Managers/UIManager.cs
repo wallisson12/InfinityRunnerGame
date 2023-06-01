@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager inst;
 
+    [Header("Screens")]
     [SerializeField] private CanvasGroup gameOverScreen,startGameScreen;
 
+    public TextMeshProUGUI distanceTxt;
 
     void Awake()
     {
