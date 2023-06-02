@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Screens")]
     [SerializeField] private CanvasGroup gameOverScreen,startGameScreen;
 
-    public TextMeshProUGUI distanceTxt;
+    public TextMeshProUGUI distanceTxt,distanceHud;
 
     void Awake()
     {

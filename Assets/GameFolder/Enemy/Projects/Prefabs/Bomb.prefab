@@ -189,3 +189,4 @@ MonoBehaviour:
   yAxis: 9
   anim: {fileID: 7945296554516038354}
   rb: {fileID: 0}
+  damage: 1

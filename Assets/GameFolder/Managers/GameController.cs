@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
         {
             UIManager.inst.GameOver();
             //Dead animation
+            
         }
 
 
@@ -45,5 +46,6 @@ public class GameController : MonoBehaviour
         int meters = (int)(d % 1000f);
 
         UIManager.inst.distanceTxt.text = kilometers.ToString() + " KM " + meters.ToString() + " M";
+        UIManager.inst.distanceHud.text = kilometers.ToString() + " KM " + meters.ToString() + " M";
     }
 }
