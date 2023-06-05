@@ -22,12 +22,13 @@ public class FlyEnemy : Enemy
 
     void OnEnable()
     {
+        GetComponent<CircleCollider2D>().enabled = true;
+
         //Life Time
         StartCoroutine(DisableEnemy());
 
         //Animation Start
         anim.Play(idle);
-        
     }
 
     void FixedUpdate()
@@ -43,6 +44,7 @@ public class FlyEnemy : Enemy
 
     IEnumerator EnemyFlyDie()
     {
+        GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }

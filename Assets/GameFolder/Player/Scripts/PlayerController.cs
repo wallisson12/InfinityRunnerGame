@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     //Player Health
     public int health { get; private set; }
-
+    [SerializeField] private GameObject[] hearts;
 
     [SerializeField]
     private Animator anim;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Shoot();
+        HearthLogic();
     }
 
     /// <summary>
@@ -64,6 +65,21 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(jump, true);
             isJumping = true;
             rb.AddForce(new Vector2(rb.velocity.x,jumpForce),ForceMode2D.Impulse);
+        }
+    }
+
+    void HearthLogic()
+    {
+        for (int i =0;i<hearts.Length;i++)
+        {
+            if (i < health)
+            {
+                hearts[i].SetActive(true);
+            }
+            else
+            {
+                hearts[i].SetActive(false);
+            }
         }
     }
     
