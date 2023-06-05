@@ -86,6 +86,7 @@ MonoBehaviour:
   health: 1
   damage: 1
   speed: 5
+  anim: {fileID: 5716660084350233345}
 --- !u!1 &5716660084350233348
 GameObject:
   m_ObjectHideFlags: 0

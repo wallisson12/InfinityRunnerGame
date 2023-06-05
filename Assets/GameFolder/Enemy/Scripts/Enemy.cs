@@ -12,15 +12,8 @@ public class Enemy : MonoBehaviour
         health -= dmg;
 
         if (health <= 0)
-        {
-            if (gameObject.CompareTag("EnemyFly"))
-            {
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+        {     
+           Destroy(gameObject);   
         }
     }
 
