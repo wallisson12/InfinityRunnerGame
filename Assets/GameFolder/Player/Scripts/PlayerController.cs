@@ -6,9 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
     private Rigidbody2D rb;
-    [SerializeField]
-    private float speed,jumpForce;
+    [SerializeField] private float speed,jumpForce;
     public bool isJumping;
+    [SerializeField] private GameObject jetpack;
 
     //Player Health
     public int health { get; private set; }
@@ -16,9 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private Animator anim;
-
     [Header("Animations Hash")]
-    public int jump;
+    public int jump,die;
 
     [Header("Bullet")]
     [SerializeField] private GameObject bulletPrefab;
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         jump = Animator.StringToHash("Jumping");
+        die = Animator.StringToHash("Die");
         health = 3;
     }
 
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Alive();
         Jump();
         Shoot();
         HearthLogic();
@@ -63,11 +64,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             anim.SetBool(jump, true);
+            jetpack.SetActive(true);
             isJumping = true;
             rb.AddForce(new Vector2(rb.velocity.x,jumpForce),ForceMode2D.Impulse);
         }
     }
 
+    /// <summary>
+    /// Heart hud
+    /// </summary>
     void HearthLogic()
     {
         for (int i =0;i<hearts.Length;i++)
@@ -82,6 +87,15 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    void Alive()
+    {
+        if (health <= 0)
+        {
+            anim.SetTrigger(die);
+            enabled = false;
+        }
+    }
     
     /// <summary>
     /// Player takes damage
@@ -91,12 +105,24 @@ public class PlayerController : MonoBehaviour
         health -= damage;
     }
 
+    /// <summary>
+    /// Player heals 
+    /// </summary>
+    public void OnHeal(int heal)
+    {
+        if (health < 3)
+        {
+            health += heal;
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer == 6)
         {
             isJumping = false;
             anim.SetBool(jump,false);
+            jetpack.SetActive(false);
         }
     }
 }

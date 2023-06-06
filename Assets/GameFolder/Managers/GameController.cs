@@ -18,8 +18,6 @@ public class GameController : MonoBehaviour
         if (player.health <= 0)
         {
             UIManager.inst.GameOver();
-            //Dead animation
-            
         }
 
 

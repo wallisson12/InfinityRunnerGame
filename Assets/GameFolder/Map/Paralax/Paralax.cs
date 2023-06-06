@@ -5,7 +5,7 @@ using UnityEngine;
 public class Paralax : MonoBehaviour
 {
     [SerializeField] private float lenght;
-    [SerializeField] private float startPosition;
+    [SerializeField] private Vector2 startPosition;
 
     public Transform cam;
 
@@ -13,7 +13,7 @@ public class Paralax : MonoBehaviour
     
     void Start()
     {
-        startPosition = transform.position.x;
+        startPosition = transform.position;
         lenght = GetComponent<SpriteRenderer>().bounds.size.x;
 
     }
@@ -23,14 +23,14 @@ public class Paralax : MonoBehaviour
     {
         //Move
         float reposition = cam.position.x * (1f - paralaxSpeed);
-        float distance = cam.position.x * paralaxSpeed;
-        transform.position = new Vector3(startPosition + distance,transform.position.y,transform.position.z);
+        Vector2 distance = cam.position * paralaxSpeed;
+        transform.position = new Vector3(startPosition.x + distance.x,startPosition.y + distance.y,transform.position.z);
 
 
         //Pooling
-        if (reposition > startPosition + lenght)
+        if (reposition > startPosition.x + lenght)
         {
-            startPosition += lenght;
+            startPosition.x += lenght;
         }
     }
 }

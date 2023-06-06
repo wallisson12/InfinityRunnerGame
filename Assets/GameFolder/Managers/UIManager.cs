@@ -40,6 +40,6 @@ public class UIManager : MonoBehaviour
         gameOverScreen.interactable = true;
         gameOverScreen.blocksRaycasts = true;
 
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 }
