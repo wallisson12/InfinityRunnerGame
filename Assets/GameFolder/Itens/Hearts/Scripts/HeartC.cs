@@ -8,7 +8,11 @@ public class HeartC : MonoBehaviour
    {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().OnHeal(heal);
+            if (other.GetComponent<PlayerController>().health < 3)
+            {
+                other.GetComponent<PlayerController>().OnHeal(heal);
+                gameObject.SetActive(false);
+            }
         }
    }
 }
