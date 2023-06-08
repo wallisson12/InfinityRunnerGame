@@ -40,28 +40,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Alive();
-        Jump();
-        Shoot();
         HearthLogic();
     }
 
     /// <summary>
     /// Player shoot
     /// </summary>
-    void Shoot()
+    public void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.RightControl))
-        {
-            Instantiate(bulletPrefab, pointGun.position, Quaternion.identity);
-        }
+        Instantiate(bulletPrefab, pointGun.position, Quaternion.identity);
     }
 
     /// <summary>
     /// Player jump
     /// </summary>
-    void Jump()
+    public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (!isJumping)
         {
             anim.SetBool(jump, true);
             jetpack.SetActive(true);
