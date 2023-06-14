@@ -14,7 +14,17 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         efxBullet = Animator.StringToHash("BulletExplosion");
-        Destroy(gameObject, 5f);
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(DisableBullet(3f));
+    }
+
+    IEnumerator DisableBullet(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
     }
 
 
@@ -26,8 +36,15 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Explosion animation
-        anim.Play(efxBullet);
-        Destroy(gameObject, 0.5f);
+        if (other.CompareTag("Item"))
+        {
+            return;
+        }
+        else
+        {
+            anim.Play(efxBullet);
+            StartCoroutine(DisableBullet(1f));
+        }
         
     }
 

@@ -19,9 +19,11 @@ public class PlayerController : MonoBehaviour
     [Header("Animations Hash")]
     public int jump,die;
 
-    [Header("Bullet")]
-    [SerializeField] private GameObject bulletPrefab;
+    [Header("Point Bullet")]
     [SerializeField] private Transform pointGun;
+    [SerializeField] private float speedTimeBullet;
+    public float timeBullet = 0f;
+
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         jump = Animator.StringToHash("Jumping");
         die = Animator.StringToHash("Die");
         health = 3;
+        speedTimeBullet = 1.5f;
     }
 
     void FixedUpdate()
@@ -41,6 +44,13 @@ public class PlayerController : MonoBehaviour
     {
         Alive();
         HearthLogic();
+
+        timeBullet += Time.deltaTime * speedTimeBullet;
+
+        if (timeBullet >= 1)
+        {
+            timeBullet = 1f;
+        }
     }
 
     /// <summary>
@@ -48,7 +58,13 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void Shoot()
     {
-        Instantiate(bulletPrefab, pointGun.position, Quaternion.identity);
+        if (timeBullet >= 1)
+        {
+            timeBullet = 0f;
+            GameObject bullet = ObjectPooling.inst.GetPooledObject();
+            bullet.transform.position = pointGun.position;
+            bullet.SetActive(true);
+        }
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class UIManager : MonoBehaviour
     [Header("Screens")]
     [SerializeField] private CanvasGroup gameOverScreen,startGameScreen;
 
+    [Header("Hud")]
     public TextMeshProUGUI distanceTxt,distanceHud;
+    public Image shooterBar;
+    
 
     void Awake()
     {
@@ -39,7 +43,13 @@ public class UIManager : MonoBehaviour
         gameOverScreen.alpha = 1f;
         gameOverScreen.interactable = true;
         gameOverScreen.blocksRaycasts = true;
+    }
 
-        //Time.timeScale = 0f;
+    /// <summary>
+    /// Manage the shooter bar
+    /// </summary>
+    public void ManagerShooterBar(PlayerController p)
+    {
+        shooterBar.fillAmount = p.timeBullet;
     }
 }

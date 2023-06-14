@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        //Update ShooterBar
+        UIManager.inst.ManagerShooterBar(player);
+
+
         if (player.health <= 0)
         {
             UIManager.inst.GameOver();
@@ -38,6 +42,9 @@ public class GameController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Calculates distance in meters or kilometers
+    /// </summary>
     void WhatDistance(float d, string s)
     {
         int kilometers = (int)(d / 1000f);
