@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(DisableBullet(3f));
+        StartCoroutine(DisableBullet(5f));
     }
 
     IEnumerator DisableBullet(float time)

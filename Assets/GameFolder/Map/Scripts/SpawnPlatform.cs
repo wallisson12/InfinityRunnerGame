@@ -7,14 +7,14 @@ public class SpawnPlatform : MonoBehaviour
     [SerializeField] private List<GameObject> platforms = new List<GameObject>();
     private float offset;
     private Transform player;
-    private List<Transform> currentPlatforms = new List<Transform>();
+    [SerializeField] private List<Transform> currentPlatforms = new List<Transform>();
 
     public Transform currentPlatformPoint;
     public int platformIndex;
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;    
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Start()
@@ -24,6 +24,7 @@ public class SpawnPlatform : MonoBehaviour
         for(int i=0;i<platforms.Count;i++)
         {
             GameObject p = Instantiate(platforms[Random.Range(0,platforms.Count)], new Vector2(place * 22f,0f), transform.rotation);
+            p.transform.parent = transform;
 
             if (p.CompareTag("p2"))
             {
@@ -31,6 +32,7 @@ public class SpawnPlatform : MonoBehaviour
             }
 
             place++;
+
             //Platforms in scene
             currentPlatforms.Add(p.transform);
 
@@ -47,6 +49,7 @@ public class SpawnPlatform : MonoBehaviour
     {
         Move();
     }
+
 
     void Move()
     {
@@ -74,9 +77,8 @@ public class SpawnPlatform : MonoBehaviour
     //This method do the pooling of the platforms
     void Pooling(GameObject p)
     {
-
+      
         //When to do the pooling spawn a random platform
-
         offset += 22f;
 
         if (p.CompareTag("p2"))
@@ -93,4 +95,5 @@ public class SpawnPlatform : MonoBehaviour
             p.GetComponent<Platform>().spawnObj.Spawn();
         }
     }
+    
 }
