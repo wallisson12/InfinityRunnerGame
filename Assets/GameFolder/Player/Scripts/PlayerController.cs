@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
+    [SerializeField] private PlayerObject playerSettings;
     private Rigidbody2D rb;
-    [SerializeField] private float speed,jumpForce;
     public bool isJumping;
     [SerializeField] private GameObject jetpack;
 
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
     [Header("Animations Hash")]
-    public int jump,die;
+    private int jump,die;
 
     [Header("Point Bullet")]
     [SerializeField] private Transform pointGun;
@@ -27,17 +27,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         jump = Animator.StringToHash("Jumping");
         die = Animator.StringToHash("Die");
-        health = 3;
+
+        //Add Attributes
+        health = playerSettings.health;
         speedTimeBullet = 1.5f;
     }
 
     void FixedUpdate()
     {
         //Move player
-        rb.velocity = new Vector2(speed,rb.velocity.y);
+        rb.velocity = new Vector2(playerSettings.speed,rb.velocity.y);
     }
 
     void Update()
@@ -77,7 +80,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(jump, true);
             jetpack.SetActive(true);
             isJumping = true;
-            rb.AddForce(new Vector2(rb.velocity.x,jumpForce),ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(rb.velocity.x,playerSettings.jumpForce),ForceMode2D.Impulse);
         }
     }
 

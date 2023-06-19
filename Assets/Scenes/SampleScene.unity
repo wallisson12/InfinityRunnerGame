@@ -1776,10 +1776,9 @@ MonoBehaviour:
   - {fileID: 1378690485834823714, guid: 6788380544c7f9d40b4f3723cf6ea93d, type: 3}
   - {fileID: 541892628199259731, guid: 492b2579447840c4dbcafd5ec338e75d, type: 3}
   currentPlatforms: []
-  instancePlatforms: []
-  instancesPoint: {fileID: 0}
   currentPlatformPoint: {fileID: 0}
   platformIndex: 0
+  lastIndex: 0
 --- !u!1 &895811444
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,8 +2246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb4af9ecd62d6d4bb6f0e9cba2491b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpForce: 9
+  playerSettings: {fileID: 11400000, guid: 7bf569752a8580943826f0373f761a22, type: 2}
+  speed: 0
+  jumpForce: 0
   isJumping: 0
   jetpack: {fileID: 1661730977}
   hearts:
