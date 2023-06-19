@@ -10,7 +10,7 @@ public class SpawnPlatform : MonoBehaviour
     [SerializeField] private List<Transform> currentPlatforms = new List<Transform>();
 
     public Transform currentPlatformPoint;
-    public int platformIndex;
+    public int platformIndex,lastIndex = 0;
 
     void Awake()
     {
@@ -50,7 +50,9 @@ public class SpawnPlatform : MonoBehaviour
         Move();
     }
 
-
+    /// <summary>
+    /// Check the distance between the player and the platform
+    /// </summary>
     void Move()
     {
         float distance = player.position.x - currentPlatformPoint.position.x;
@@ -58,7 +60,7 @@ public class SpawnPlatform : MonoBehaviour
         if (distance >= 10f)
         {
             //Pooling platform
-            Pooling(currentPlatforms[platformIndex].gameObject);
+            Pooling(currentPlatforms[platformIndex].gameObject,platformIndex);
 
             //Next platform
             platformIndex++;
@@ -74,25 +76,32 @@ public class SpawnPlatform : MonoBehaviour
         }
     }
 
-    //This method do the pooling of the platforms
-    void Pooling(GameObject p)
+    /// <summary>
+    /// Pooling the plaforms
+    /// </summary>
+    void Pooling(GameObject p, int index)
     {
+        //Destroy the object and add other platform at list
+        Destroy(p);
+        GameObject p2 = Instantiate(platforms[Random.Range(0,platforms.Count)]);
+        p2.transform.parent = transform;
+        currentPlatforms[index] = p2.transform; 
       
         //When to do the pooling spawn a random platform
         offset += 22f;
 
-        if (p.CompareTag("p2"))
+        if (p2.CompareTag("p2"))
         {
-            p.transform.position = new Vector2(offset, -0.7f);
+            p2.transform.position = new Vector2(offset, -0.7f);
         }
         else
         {
-            p.transform.position = new Vector2(offset,0f);
+            p2.transform.position = new Vector2(offset,0f);
         }
 
-        if (p.GetComponent<Platform>().spawnObj != null)
+        if (p2.GetComponent<Platform>().spawnObj != null)
         {
-            p.GetComponent<Platform>().spawnObj.Spawn();
+            p2.GetComponent<Platform>().spawnObj.Spawn();
         }
     }
     

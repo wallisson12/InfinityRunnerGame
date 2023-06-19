@@ -18,6 +18,7 @@ public class FlyEnemy : Enemy
         idle = Animator.StringToHash(gameObject.name + "Idle");
         die = Animator.StringToHash("EnemyFlyDie");
         health = 1;
+        damage = 1;
     }
 
     void OnEnable()
