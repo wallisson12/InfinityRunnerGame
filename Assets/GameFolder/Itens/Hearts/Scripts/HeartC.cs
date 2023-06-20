@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class HeartC : MonoBehaviour
 {
-    [SerializeField] private int heal;
+    [SerializeField] protected int heal;
 
-   private void OnTriggerEnter2D(Collider2D other)
+   protected virtual void OnTriggerEnter2D(Collider2D other)
    {
         if (other.CompareTag("Player"))
         {

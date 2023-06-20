@@ -31,9 +31,10 @@ public class Bomb : MonoBehaviour
             DestroyBomb(0.5f);
 
         }
-        else if (other.gameObject.layer == 6)
+        else if (other.gameObject.layer == 6 || other.CompareTag("Bullet"))
         {
             anim.Play(bombEx);
+            GetComponent<CircleCollider2D>().enabled = false;
             DestroyBomb(0.5f);
         }
     }

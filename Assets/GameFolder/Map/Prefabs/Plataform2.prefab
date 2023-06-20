@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77256107099682362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.93, y: 1, z: 0}
+  m_LocalPosition: {x: 0.93, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361351974032916395}
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711517819497790893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23, y: 1.5, z: 0}
+  m_LocalPosition: {x: -5.23, y: 1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361351974032916395}
@@ -369,6 +369,7 @@ MonoBehaviour:
   - {fileID: 1042478272801370240}
   - {fileID: 106169460483671329}
   enemyPrefab: {fileID: 8212768181973446678, guid: 17b9526b8f86e014090e35dff39f0af3, type: 3}
+  currentEnemy: {fileID: 0}
 --- !u!1 &4912295968272799522
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8090219496017139918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.05, y: 1.5, z: 0}
+  m_LocalPosition: {x: 7.05, y: 1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361351974032916395}

@@ -412,7 +412,7 @@ MonoBehaviour:
   - {fileID: 4567456939433637148}
   - {fileID: 2185274967519784430}
   item: {fileID: 1043063699057954960}
-  spawnTime: 10
+  spawnTime: 8
   timeCount: 0
 --- !u!1001 &7861319971049465552
 PrefabInstance:
