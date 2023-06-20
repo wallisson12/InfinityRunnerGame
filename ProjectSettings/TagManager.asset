@@ -9,6 +9,7 @@ TagManager:
   - EnemyFly
   - Enemy
   - Item
+  - p4
   layers:
   - Default
   - TransparentFX

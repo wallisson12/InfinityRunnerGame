@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnPlatform : MonoBehaviour
 {
     [SerializeField] private List<GameObject> platforms = new List<GameObject>();
-    private float offset;
+    private float offset = 0f;
     private Transform player;
     [SerializeField] private List<Transform> currentPlatforms = new List<Transform>();
 
@@ -29,6 +29,10 @@ public class SpawnPlatform : MonoBehaviour
             if (p.CompareTag("p2"))
             {
                 p.transform.position = new Vector2(p.transform.position.x,-0.7f);
+
+            }else if (p.CompareTag("p4"))
+            {
+                p.transform.position = new Vector2(p.transform.position.x,1.46f);
             }
 
             place++;
@@ -87,16 +91,20 @@ public class SpawnPlatform : MonoBehaviour
         p2.transform.parent = transform;
         currentPlatforms[index] = p2.transform; 
       
-        //When to do the pooling spawn a random platform
+        //Next position
         offset += 22f;
 
         if (p2.CompareTag("p2"))
         {
             p2.transform.position = new Vector2(offset, -0.7f);
         }
+        else if(p2.CompareTag("p4"))
+        {
+            p2.transform.position = new Vector2(offset,1.46f);
+        }
         else
         {
-            p2.transform.position = new Vector2(offset,0f);
+            p2.transform.position = new Vector2(offset, 0f);
         }
 
         if (p2.GetComponent<Platform>().spawnObj != null)

@@ -1300,7 +1300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685263817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.86, z: 5}
+  m_LocalPosition: {x: 0, y: 3.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 32383458}
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   lenght: 0
   startPosition: {x: 0, y: 0}
   cam: {fileID: 519420032}
-  paralaxSpeed: 0.2
+  paralaxSpeed: 0.4
 --- !u!1 &834166999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873562411}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.300001, y: -14.099999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1173280913}
@@ -1775,6 +1775,7 @@ MonoBehaviour:
   - {fileID: 4908268045267601209, guid: 37d8df062a9c44e4ca6553500b1787e8, type: 3}
   - {fileID: 1378690485834823714, guid: 6788380544c7f9d40b4f3723cf6ea93d, type: 3}
   - {fileID: 541892628199259731, guid: 492b2579447840c4dbcafd5ec338e75d, type: 3}
+  - {fileID: 6639437308145865168, guid: d924c040b7f45a74a8cb0d39c93a027e, type: 3}
   currentPlatforms: []
   currentPlatformPoint: {fileID: 0}
   platformIndex: 0
@@ -2247,8 +2248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSettings: {fileID: 11400000, guid: 7bf569752a8580943826f0373f761a22, type: 2}
-  speed: 0
-  jumpForce: 0
   isJumping: 0
   jetpack: {fileID: 1661730977}
   hearts:
@@ -2256,8 +2255,6 @@ MonoBehaviour:
   - {fileID: 670857214}
   - {fileID: 955527197}
   anim: {fileID: 1714413906}
-  jump: 0
-  die: 0
   pointGun: {fileID: 394363008}
   speedTimeBullet: 0
   timeBullet: 0
@@ -2641,7 +2638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173280912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.4, y: 24.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2037504513}
@@ -4097,7 +4094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742709839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 640073940}
