@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
     private int efxBullet;
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private Animator anim;
     public int damage;
 
@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
 
     void OnEnable()
     {
-        StartCoroutine(DisableBullet(5f));
+        StartCoroutine(DisableBullet(4f));
     }
 
     IEnumerator DisableBullet(float time)

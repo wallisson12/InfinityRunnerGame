@@ -40,4 +40,12 @@ public class ObjectPooling : MonoBehaviour
 
         return g;
     }
+
+    public void IncreaseBulletSpeed(float valuee)
+    {
+        foreach (GameObject g in instances)
+        {
+            g.GetComponent<Bullet>().speed += valuee;
+        }
+    }
 }

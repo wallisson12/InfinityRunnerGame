@@ -63,14 +63,14 @@ public class FlyEnemy : Enemy
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        //Animation Die
-        anim.Play(die);
 
         //Damage Bullet
         if (other.CompareTag("Bullet"))
         {
             ApplyDamage(other.GetComponent<Bullet>().damage);
+            
         }
+
         //Damage Player
         if (other.CompareTag("Player"))
         {

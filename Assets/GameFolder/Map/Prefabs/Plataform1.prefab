@@ -425,14 +425,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeartCollect
       objectReference: {fileID: 0}
-    - target: {fileID: 7160917147997320768, guid: a126d8aa5f254874c95b6b985776faa2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7160917147997320768, guid: a126d8aa5f254874c95b6b985776faa2, type: 3}
-      propertyPath: m_TagString
-      value: Item
-      objectReference: {fileID: 0}
     - target: {fileID: 7160917147997320771, guid: a126d8aa5f254874c95b6b985776faa2, type: 3}
       propertyPath: m_RootOrder
       value: 0

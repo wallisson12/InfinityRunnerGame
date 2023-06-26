@@ -7,10 +7,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private float distance;
     private string unit;
     private float distanceToShow;
+    private int kilometers,meters,aux;
+    [SerializeField] private float valueIncrease;
+
 
     void Awake()
     {
         Time.timeScale = 0f;
+    }
+
+    void Start()
+    {
+        aux = 500;    
     }
 
     void Update()
@@ -39,6 +47,7 @@ public class GameController : MonoBehaviour
         }
 
         WhatDistance(distanceToShow,unit);
+        IncreasesSpeed();
     }
 
 
@@ -47,10 +56,23 @@ public class GameController : MonoBehaviour
     /// </summary>
     void WhatDistance(float d, string s)
     {
-        int kilometers = (int)(d / 1000f);
-        int meters = (int)(d % 1000f);
+        kilometers = (int)(d / 1000f);
+        meters = (int)(d % 1000f);
 
         UIManager.inst.distanceTxt.text = kilometers.ToString() + " KM " + meters.ToString() + " M";
         UIManager.inst.distanceHud.text = kilometers.ToString() + " KM " + meters.ToString() + " M";
+    }
+
+    /// <summary>
+    /// Increases player and bullet speed
+    /// </summary>
+    void IncreasesSpeed()
+    {
+        if (meters == aux)
+        {
+            aux += meters;
+            player.playerSettings.speed += valueIncrease;
+            GameObject.FindGameObjectWithTag("ObjPooling").GetComponent<ObjectPooling>().IncreaseBulletSpeed(valueIncrease);
+        }
     }
 }

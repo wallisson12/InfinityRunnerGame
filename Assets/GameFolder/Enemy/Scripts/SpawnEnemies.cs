@@ -30,7 +30,7 @@ public class SpawnEnemies : MonoBehaviour
         else
         {
             timeCount = 0f;
-            g.transform.position = new Vector2(transform.position.x,Random.Range(transform.position.y,8f));
+            g.transform.position = new Vector2(transform.position.x,Random.Range(transform.position.y,7f));
             g.SetActive(true);
         }
     }

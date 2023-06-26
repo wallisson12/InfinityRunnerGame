@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
-    [SerializeField] private PlayerObject playerSettings;
+    public PlayerObject playerSettings;
     private Rigidbody2D rb;
-    public bool isJumping;
+    public bool isJumping,isDead;
     [SerializeField] private GameObject jetpack;
 
     //Player Health
@@ -25,9 +25,12 @@ public class PlayerController : MonoBehaviour
     public float timeBullet = 0f;
 
 
+    void Awake()
+    {
+        playerSettings.speed = 10f;    
+    }
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         jump = Animator.StringToHash("Jumping");
         die = Animator.StringToHash("Die");
@@ -50,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         timeBullet += Time.deltaTime * speedTimeBullet;
 
-        if (timeBullet >= 1)
+        if (timeBullet >= 1f)
         {
             timeBullet = 1f;
         }
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetTrigger(die);
             enabled = false;
+            isDead = true;
         }
     }
     
