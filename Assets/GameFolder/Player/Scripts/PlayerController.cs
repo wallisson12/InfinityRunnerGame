@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        playerSettings.speed = 10f;    
+        playerSettings.speed = 15f;    
     }
     void Start()
     {
@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool(jump, true);
             jetpack.SetActive(true);
             isJumping = true;
+            rb.velocity = new Vector2(transform.position.x, 0f);
             rb.AddForce(new Vector2(rb.velocity.x,playerSettings.jumpForce),ForceMode2D.Impulse);
         }
     }
