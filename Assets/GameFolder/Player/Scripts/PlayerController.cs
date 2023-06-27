@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        playerSettings.speed = 15f;    
+        playerSettings.speed = 10f;    
     }
     void Start()
     {
@@ -113,6 +113,8 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger(die);
             enabled = false;
             isDead = true;
+            jetpack.SetActive(false);
+
         }
     }
     
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int damage)
     {
         health -= damage;
+        ShakeCam.Instance.TriggerShake();
     }
 
     /// <summary>

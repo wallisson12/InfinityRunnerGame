@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: player1
   m_EditorClassIdentifier: 
   health: 3
-  speed: 15
+  speed: 10
   jumpForce: 9

@@ -15,7 +15,6 @@ public class Paralax : MonoBehaviour
     {
         startPosition = transform.position;
         lenght = GetComponent<SpriteRenderer>().bounds.size.x;
-
     }
 
     
