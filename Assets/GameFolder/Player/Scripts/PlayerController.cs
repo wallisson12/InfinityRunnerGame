@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player")]
     public PlayerObject playerSettings;
+    public TypeShake typeShakeDamage; 
+    public TypeShake typeShakeShoot;
     private Rigidbody2D rb;
     public bool isJumping,isDead;
     [SerializeField] private GameObject jetpack;
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
             GameObject bullet = ObjectPooling.inst.GetPooledObject();
             bullet.transform.position = pointGun.position;
             bullet.SetActive(true);
+            ShakeCam.Instance.TriggerShake(typeShakeShoot);
         }
     }
 
@@ -124,7 +127,7 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int damage)
     {
         health -= damage;
-        ShakeCam.Instance.TriggerShake();
+        ShakeCam.Instance.TriggerShake(typeShakeDamage);
     }
 
     /// <summary>

@@ -8,9 +8,9 @@ public class ShakeCam : MonoBehaviour
     public static ShakeCam Instance;
     [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private CinemachineBasicMultiChannelPerlin cbmp;
-    private float shakeAmount = 3f;
-    private float shakeFrequency = 40f;
-    private float shakeDuration = .3f;
+    //private float shakeAmount = 3f;
+    //private float shakeFrequency = 40f;
+    //private float shakeDuration = .3f;
 
     void Awake()
     {
@@ -27,15 +27,15 @@ public class ShakeCam : MonoBehaviour
         StopShake();
     }
 
-    public void TriggerShake()
+    public void TriggerShake(TypeShake profileType)
     {
         cbmp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         if (cbmp != null)
         {
-            cbmp.m_AmplitudeGain = shakeAmount;
-            cbmp.m_FrequencyGain = shakeFrequency;
-            Invoke("StopShake", shakeDuration);
+            cbmp.m_AmplitudeGain = profileType.amplitude;
+            cbmp.m_FrequencyGain = profileType.frequency;
+            Invoke("StopShake", profileType.duration);
         }
     }
 
