@@ -8,9 +8,10 @@ public class ShakeCam : MonoBehaviour
     public static ShakeCam Instance;
     [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private CinemachineBasicMultiChannelPerlin cbmp;
-    //private float shakeAmount = 3f;
-    //private float shakeFrequency = 40f;
-    //private float shakeDuration = .3f;
+
+    private float shakeTimer;
+    private float startingShakeTime;
+    private float startingIn;
 
     void Awake()
     {
@@ -33,14 +34,22 @@ public class ShakeCam : MonoBehaviour
 
         if (cbmp != null)
         {
+            cbmp.m_NoiseProfile = profileType.noise;
             cbmp.m_AmplitudeGain = profileType.amplitude;
             cbmp.m_FrequencyGain = profileType.frequency;
-            Invoke("StopShake", profileType.duration);
+
+            shakeTimer = profileType.duration;
+            startingShakeTime = profileType.duration;
+            startingIn = profileType.amplitude;
         }
     }
 
+    /// <summary>
+    /// Stop shaking hard
+    /// </summary>
     void StopShake()
     {
+
         cbmp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         if (cbmp != null)
@@ -49,6 +58,27 @@ public class ShakeCam : MonoBehaviour
             cbmp.m_FrequencyGain = 0f;
         }
     }
+
+    void Update()
+    {
+        if (shakeTimer > 0f)
+        {
+            shakeTimer -= Time.deltaTime;
+
+            if (shakeTimer <= 0f)
+            {
+
+                //Stop shaking more soft
+                cbmp = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+                cbmp.m_AmplitudeGain = Mathf.Lerp(startingIn,0f,1 - (shakeTimer/startingShakeTime) );
+                cbmp.m_FrequencyGain = 0f;
+
+            }
+
+        }
+    }
+    
 
 
 }
