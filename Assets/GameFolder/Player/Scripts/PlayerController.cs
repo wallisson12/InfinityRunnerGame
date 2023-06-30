@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public TypeShake typeShakeDamage; 
     public TypeShake typeShakeShoot;
     private Rigidbody2D rb;
-    public bool isJumping,isDead;
+    public bool isJumping,isDead = false;
     [SerializeField] private GameObject jetpack;
 
     //Player Health
@@ -126,8 +126,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnHit(int damage)
     {
-        health -= damage;
-        ShakeCam.Instance.TriggerShake(typeShakeDamage);
+        if (!isDead)
+        {
+            health -= damage;
+            ShakeCam.Instance.TriggerShake(typeShakeDamage);
+        }
     }
 
     /// <summary>
