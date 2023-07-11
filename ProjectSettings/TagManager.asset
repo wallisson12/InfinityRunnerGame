@@ -11,6 +11,12 @@ TagManager:
   - Item
   - p4
   - ObjPooling
+  - RestartBtn
+  - PauseBtn
+  - ReturnPause
+  - GameOverScreen
+  - StartGameScreen
+  - PauseScreen
   layers:
   - Default
   - TransparentFX
