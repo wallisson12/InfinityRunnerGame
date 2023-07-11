@@ -4,14 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
-{
-    public void RestartScene()
+{   
+    public void LoadScene(int n)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    
-    public void StartScene()
-    {
-        UIManager.inst.StartGame();
+        SceneManager.LoadScene(n);
     }
 }

@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        Time.timeScale = 0f;
+        //Tempo para comecar o game
     }
 
     void Start()

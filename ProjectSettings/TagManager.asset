@@ -17,6 +17,13 @@ TagManager:
   - GameOverScreen
   - StartGameScreen
   - PauseScreen
+  - MenuPause
+  - MenuGameOver
+  - ShootBtn
+  - JumpBtn
+  - RankingBtn
+  - ClosePauseRank
+  - RankScreen
   layers:
   - Default
   - TransparentFX

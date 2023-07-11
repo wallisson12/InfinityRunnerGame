@@ -10,14 +10,16 @@ public class UIManager : MonoBehaviour
     public static UIManager inst;
 
     [Header("Screens")]
-    [SerializeField] private CanvasGroup gameOverScreen,startGameScreen,pauseScreen;
+    [SerializeField] private CanvasGroup gameOverScreen,pauseScreen,rankScreen;
 
     [Header("Hud")]
     public TextMeshProUGUI distanceTxt,distanceHud;
     public Image shooterBar;
 
     //--Buttons--
-    private Button playBtn, retryBtn, pauseBtn,backPauseBtn,rankBtn, menuBtn;
+    private Button shootBtn, jumpBtn;
+    private Button retryGameOverBtn,menuGameOverBtn, pauseBtn,backPauseBtn,menuPauseBtn,rankPauseBtn,closePauseRank;
+
     
 
     void Awake()
@@ -27,39 +29,53 @@ public class UIManager : MonoBehaviour
             inst = this;
         }
 
-        Load();
+        SceneManager.sceneLoaded += Load;
     }
 
     /// <summary>
     /// Take all buttons and add methods
     /// </summary>
-    void Load()
+    void Load(Scene cena, LoadSceneMode mode)
     {
+        //--Hud--
 
-        //Screens
+        shootBtn = GameObject.FindGameObjectWithTag("ShootBtn").GetComponent<Button>();
+        jumpBtn = GameObject.FindGameObjectWithTag("JumpBtn").GetComponent<Button>();
 
-        startGameScreen = GameObject.FindGameObjectWithTag("StartGameScreen").GetComponent<CanvasGroup>();
+        //--Screens--
+
         gameOverScreen = GameObject.FindGameObjectWithTag("GameOverScreen").GetComponent<CanvasGroup>();
         pauseScreen = GameObject.FindGameObjectWithTag("PauseScreen").GetComponent<CanvasGroup>();
+        rankScreen = GameObject.FindGameObjectWithTag("RankScreen").GetComponent<CanvasGroup>();
 
 
-
-        //Buttons
+        //--Buttons--
 
 
         //Pause
         pauseBtn = GameObject.FindGameObjectWithTag("PauseBtn").GetComponent<Button>();
         backPauseBtn = GameObject.FindGameObjectWithTag("ReturnPause").GetComponent<Button>();
-
+        menuPauseBtn = GameObject.FindGameObjectWithTag("MenuPause").GetComponent<Button>();
+        rankPauseBtn = GameObject.FindGameObjectWithTag("RankingBtn").GetComponent<Button>();
+        closePauseRank = GameObject.FindGameObjectWithTag("ClosePauseRank").GetComponent<Button>();
 
         //GameOver
-        retryBtn = GameObject.FindGameObjectWithTag("RestartBtn").GetComponent<Button>();
+        retryGameOverBtn = GameObject.FindGameObjectWithTag("RestartBtn").GetComponent<Button>();
+        menuGameOverBtn = GameObject.FindGameObjectWithTag("MenuGameOver").GetComponent<Button>();
 
 
-        //Events
+        //--Events--
+
+        //Pause
         pauseBtn.onClick.AddListener(PauseGame);
         backPauseBtn.onClick.AddListener(BackPause);
-        retryBtn.onClick.AddListener(Retry);
+        menuPauseBtn.onClick.AddListener(Menu);
+        rankPauseBtn.onClick.AddListener(Rank);
+        closePauseRank.onClick.AddListener(CloseRank);
+
+        //GameOver
+        retryGameOverBtn.onClick.AddListener(Retry);
+        menuGameOverBtn.onClick.AddListener(Menu);
 
     }
 
@@ -71,24 +87,22 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    void Menu()
+    {
+        //Mudar depois quando trocar o menu
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+    }
 
-
-
-
+    void CloseRank()
+    {
+        rankScreen.alpha = 0f;
+        rankScreen.interactable = false;
+        rankScreen.blocksRaycasts = false;
+    }
 
 
     //---Screens methods---
-
-    /// <summary>
-    /// Start the game
-    /// </summary>
-    public void StartGame()
-    {
-        startGameScreen.alpha = 0f;
-        startGameScreen.interactable = false;
-        startGameScreen.blocksRaycasts = false;
-        Time.timeScale = 1f;
-    }
 
     /// <summary>
     /// Enable the game over screen
@@ -100,13 +114,25 @@ public class UIManager : MonoBehaviour
         gameOverScreen.blocksRaycasts = true;
     }
 
+    public void Rank()
+    {
+        rankScreen.alpha = 1f;
+        rankScreen.interactable = true;
+        rankScreen.blocksRaycasts = true;
+    }
+
     public void PauseGame()
     {
         pauseScreen.alpha = 1f;
         pauseScreen.interactable = true;
         pauseScreen.blocksRaycasts = true;
         Time.timeScale = 0f;
+
+        //Disable hud
+        shootBtn.interactable = false;
+        jumpBtn.interactable = false;
     }
+
 
     public void BackPause()
     {
@@ -114,6 +140,10 @@ public class UIManager : MonoBehaviour
         pauseScreen.interactable = false;
         pauseScreen.blocksRaycasts = false;
         Time.timeScale = 1f;
+
+        //Enable hud
+        shootBtn.interactable = true;
+        jumpBtn.interactable = true;
     }
 
     /// <summary>
