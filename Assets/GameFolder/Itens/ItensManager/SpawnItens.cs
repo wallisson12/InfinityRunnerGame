@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class SpawnItens : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> spawnPoint = new List<GameObject>();    
+    [SerializeField] private List<GameObject> spawnPoint = new List<GameObject>();
+    [SerializeField] private int[] posibility;
     [SerializeField] private GameObject item;
+    [SerializeField] private int aux;
 
-    [SerializeField] private float spawnTime,timeCount;
 
     void Start()
-    {
-        //Start count
-        timeCount = 0f;        
+    {  
+       aux = posibility[Random.Range(0, posibility.Length)];     
     }
     void Update()
     {
-        if (item.activeSelf == false)
+        if (aux == 1)
         {
-            timeCount += Time.deltaTime;
-        }
-
-        if (timeCount >= spawnTime)
-        {
-            timeCount = 0f;
+            aux = 0;
             GameObject p = spawnPoint[Random.Range(0, spawnPoint.Count)];
             item.transform.parent = p.transform;
             item.transform.position = p.transform.position; 
