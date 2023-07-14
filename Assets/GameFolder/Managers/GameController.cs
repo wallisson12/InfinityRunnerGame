@@ -47,9 +47,13 @@ public class GameController : MonoBehaviour
         }
 
         WhatDistance(distanceToShow,unit);
-        IncreasesSpeed();
     }
 
+    void FixedUpdate()
+    {
+        IncreasesSpeed();
+ 
+    }
 
     /// <summary>
     /// Calculates distance in meters or kilometers
@@ -68,9 +72,9 @@ public class GameController : MonoBehaviour
     /// </summary>
     void IncreasesSpeed()
     {
+        //Mecher depois
         if (meters == aux)
         {
-            aux += meters;
             player.playerSettings.speed += valueIncrease;
             GameObject.FindGameObjectWithTag("ObjPooling").GetComponent<ObjectPooling>().IncreaseBulletSpeed(valueIncrease);
         }

@@ -20,7 +20,10 @@ public class UIManager : MonoBehaviour
     private Button shootBtn, jumpBtn;
     private Button retryGameOverBtn,menuGameOverBtn, pauseBtn,backPauseBtn,menuPauseBtn,rankPauseBtn,closePauseRank;
 
-    
+
+    [Header("SoundEfx")]
+    [SerializeField] private AudioClip buttonPress_Efx;
+    [SerializeField] private float volume,pitch;
 
     void Awake()
     {
@@ -84,11 +87,15 @@ public class UIManager : MonoBehaviour
     //---Buttons Methods---
     void Retry()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume,pitch);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void Menu()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume, pitch);
+
         //Mudar depois quando trocar o menu
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
@@ -96,6 +103,8 @@ public class UIManager : MonoBehaviour
 
     void CloseRank()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume, pitch);
+
         rankScreen.alpha = 0f;
         rankScreen.interactable = false;
         rankScreen.blocksRaycasts = false;
@@ -116,6 +125,8 @@ public class UIManager : MonoBehaviour
 
     public void Rank()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume, pitch);
+
         rankScreen.alpha = 1f;
         rankScreen.interactable = true;
         rankScreen.blocksRaycasts = true;
@@ -123,6 +134,8 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume, pitch);
+
         pauseScreen.alpha = 1f;
         pauseScreen.interactable = true;
         pauseScreen.blocksRaycasts = true;
@@ -136,6 +149,8 @@ public class UIManager : MonoBehaviour
 
     public void BackPause()
     {
+        SoundManager.inst.PlayAudio(buttonPress_Efx, volume, pitch);
+
         pauseScreen.alpha = 0f;
         pauseScreen.interactable = false;
         pauseScreen.blocksRaycasts = false;

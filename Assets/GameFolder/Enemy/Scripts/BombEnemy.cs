@@ -7,6 +7,8 @@ public class BombEnemy : Enemy
     [SerializeField] private Transform firePoint;
 
     [SerializeField] private float throwTime;
+    [SerializeField] private AudioSource audioS;
+    [SerializeField] private AudioClip shootE;
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class BombEnemy : Enemy
 
         if (throwCount >= throwTime)
         {
+            audioS.PlayOneShot(shootE);
             Instantiate(bombPrefab, firePoint.position, Quaternion.identity);
             throwCount = 0f;
         }

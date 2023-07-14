@@ -17,14 +17,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject[] hearts;
 
     [SerializeField]
-    private Animator anim;
+    private Animator anim,animJ;
     [Header("Animations Hash")]
-    private int jump,die;
+    private int jump,die,jetP;
 
     [Header("Point Bullet")]
     [SerializeField] private Transform pointGun;
     [SerializeField] private float speedTimeBullet;
     public float timeBullet = 0f;
+
+    [Header("Effects")]
+    [SerializeField] private AudioClip shootEfx, jumpEfx;
+    [SerializeField] private float volume,pitchS,pitchJ;
 
 
     void Awake()
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         jump = Animator.StringToHash("Jumping");
         die = Animator.StringToHash("Die");
+        jetP = Animator.StringToHash("JetpackAnim");
 
         //Add Attributes
         health = playerSettings.health;
@@ -68,6 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if (timeBullet >= 1)
         {
+            SoundManager.inst.PlayAudio(shootEfx,volume, pitchS);
             timeBullet = 0f;
             GameObject bullet = ObjectPooling.inst.GetPooledObject();
             bullet.transform.position = pointGun.position;
@@ -83,8 +89,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!isJumping)
         {
+            SoundManager.inst.PlayAudio(jumpEfx, volume,pitchJ);
             anim.SetBool(jump, true);
-            jetpack.SetActive(true);
+            animJ.Play(jetP);
             isJumping = true;
             rb.velocity = new Vector2(transform.position.x, 0f);
             rb.AddForce(new Vector2(rb.velocity.x,playerSettings.jumpForce),ForceMode2D.Impulse);
@@ -150,7 +157,6 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
             anim.SetBool(jump,false);
-            jetpack.SetActive(false);
         }
     }
 }

@@ -3588,6 +3588,9 @@ MonoBehaviour:
   distanceTxt: {fileID: 422498846}
   distanceHud: {fileID: 1864826309}
   shooterBar: {fileID: 1040976171}
+  buttonPress_Efx: {fileID: 8300000, guid: f5da60064cbd54b48b466e8e0f5a24a2, type: 3}
+  volume: 0.25
+  pitch: 1.3
 --- !u!1 &731311245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5374,9 +5377,15 @@ MonoBehaviour:
   - {fileID: 670857214}
   - {fileID: 955527197}
   anim: {fileID: 1714413906}
+  animJ: {fileID: 1661730980}
   pointGun: {fileID: 394363008}
   speedTimeBullet: 0
   timeBullet: 0
+  shootEfx: {fileID: 8300000, guid: 70cea6857840b8c4397c8596b476fe85, type: 3}
+  jumpEfx: {fileID: 8300000, guid: 7e27768fc4e740a4e8a7ea6bdeaa5178, type: 3}
+  volume: 0.1
+  pitchS: 1.3
+  pitchJ: 1.2
 --- !u!50 &1038124890
 Rigidbody2D:
   serializedVersion: 4
@@ -8574,7 +8583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1661730978
 Transform:
   m_ObjectHideFlags: 0
